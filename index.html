@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ASTRA — Astronaut Dashboard</title>
+<meta name="description" content="ASTRA neural command interface — live astronaut telemetry, vitals, and mission status."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<div class="app">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <div class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <span class="brand-name">ASTRA</span>
+      <div class="mission">
+        <div class="row" style="color:var(--green)">MISSION: ISS-07</div>
+        <div class="row">STATUS: ACTIVE <span class="dot"></span></div>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <a data-nav href="index.html">DASHBOARD</a>
+      <a data-nav href="wellness.html">WELLNESS</a>
+      <a data-nav href="games.html">GAMES</a>
+      <a data-nav href="profile.html">PROFILE</a>
+      <a data-nav href="memories.html">MEMORIES</a>
+    </div>
+    <div class="nav-right">
+      <div class="timestamp">
+        <div class="lbl">LIVE_TIME_STAMP</div>
+        <div class="val" data-clock>00:00:00 UTC</div>
+      </div>
+      <button class="icon-btn" title="Alerts"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></button>
+      <button class="icon-btn" title="Settings"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/></svg></button>
+      <div class="avatar"></div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <div class="t">ASTRA_OS</div>
+        <div class="s">V4.2.0_STABLE</div>
+      </div>
+      <a class="side-link active" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        <span class="lbl-text">DASHBOARD</span>
+      </a>
+      <a class="side-link" href="wellness.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span class="lbl-text">WELLNESS</span>
+      </a>
+      <a class="side-link" href="games.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 12L3 21l1.5-1.5L6 21l1.5-1.5L9 21l-3-9zM18 12l3 9-1.5-1.5L18 21l-1.5-1.5L15 21l3-9zM12 3l-4 8h8l-4-8z"/></svg>
+        <span class="lbl-text">GAMES</span>
+      </a>
+      <a class="side-link" href="profile.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span class="lbl-text">PROFILE</span>
+      </a>
+      <a class="side-link" href="memories.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="lbl-text">MEMORIES</span>
+      </a>
+      <div class="side-bottom">
+        <button class="icon-btn" title="Power"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18.36 6.64a9 9 0 11-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></button>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+      <div class="grid g-12">
+
+        <!-- Hero -->
+        <div class="span-5">
+          <div class="card hero-card">
+            <div><span class="badge">SYSTEM_CORE_ACTIVE</span></div>
+            <div class="mt-3">
+              <div class="headline">NEURAL_COMMAND</div>
+              <div class="headline accent">INTERFACE_V4</div>
+            </div>
+            <img class="hero-img" src="assets/astronaut-hero.jpg" alt="Astronaut"/>
+            <div class="flex items-center gap-2 text-xs text-muted tracking">
+              <span class="dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan)"></span>
+              RELAY_STRENGTH: OPTIMAL
+            </div>
+            <div class="flex gap-3 mt-4">
+              <button class="btn ghost">AUDIT_LOGS</button>
+              <button class="btn" onclick="window.location.href='memories.html'">CONNECT_WITH_LOVED_ONES</button>
+            </div>
+            <div class="coords">COORDINATES<b>51.640° N, 0.000° E</b></div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div class="span-7 grid" style="grid-template-rows:auto auto 1fr;gap:16px">
+          <div class="grid g-2">
+            <div class="card">
+              <div class="flex items-center justify-between mb-3">
+                <h3>LIVE NEURAL TELEMETRY</h3>
+                <span class="text-xs text-muted">2.14ms_LATENCY</span>
+              </div>
+              <div class="spectrum"></div>
+            </div>
+            <div class="card">
+              <div class="flex items-center justify-between mb-3">
+                <h3>VOICE SPECTRUM</h3>
+                <div class="flex gap-2">
+                  <span class="dot" style="background:var(--cyan);box-shadow:0 0 6px var(--cyan)"></span>
+                  <span class="dot" style="background:var(--violet);box-shadow:0 0 6px var(--violet)"></span>
+                </div>
+              </div>
+              <div class="voice"></div>
+            </div>
+          </div>
+
+          <div class="grid g-3">
+            <div class="card metric">
+              <div class="lbl">NEURAL STABILITY</div>
+              <div class="val">94.2 <span class="u">%</span></div>
+              <div class="bar"><i data-fill="94%"></i></div>
+            </div>
+            <div class="card metric">
+              <div class="lbl">MISSION TIME</div>
+              <div class="val" style="font-family:'JetBrains Mono',monospace" data-mission-time>072:00:00</div>
+              <div class="flex items-center justify-center gap-2 mt-3 text-xs text-muted">
+                <span class="dot" style="background:var(--violet);box-shadow:0 0 6px var(--violet)"></span> T-PLUS_ACTIVE
+              </div>
+            </div>
+            <div class="card metric">
+              <div class="lbl">O2 RESERVES</div>
+              <div class="val text-green">87 <span class="u">%</span></div>
+              <div class="bar"><i data-fill="87%" style="background:var(--green)"></i></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="flex items-center justify-between mb-3">
+              <h3 style="color:var(--dim)">LOG</h3>
+              <span class="text-xs" style="color:var(--red);letter-spacing:2px">ENCRYPTED</span>
+            </div>
+            <div class="log-item cyan">
+              <div class="who">07:14:22_ASTRA:</div>
+              <div class="msg">Confirming lunar orbital insertion coordinates. All systems nominal.</div>
+            </div>
+            <div class="log-item user">
+              <div class="who">07:14:48_USER:</div>
+              <div class="msg">Update primary mission objective priority list.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <div class="span-8">
+          <div class="card">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 style="color:var(--text)">EMOTIONAL STATES & FATIGUE</h3>
+                <div class="sub">BIOMETRIC_DATA_STREAM_6H</div>
+              </div>
+              <div class="flex gap-3 text-xs text-muted">
+                <span class="flex items-center gap-2"><span class="dot" style="background:var(--cyan)"></span>STRESS</span>
+                <span class="flex items-center gap-2"><span class="dot" style="background:var(--green)"></span>CALM</span>
+                <span class="flex items-center gap-2"><span class="dot" style="background:var(--orange)"></span>FATIGUE</span>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <canvas data-chart='[{"color":"#22d3ee","data":[60,62,68,72,78,85,82,80,76,72,70,68]},{"color":"#22c55e","data":[40,42,45,48,52,55,58,60,62,65,68,70]},{"color":"#f97316","data":[30,35,40,45,50,55,60,65,68,70,72,75]}]'></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="span-4">
+          <div class="card">
+            <h3 style="color:var(--text)" class="mb-3">CRITICAL_STATUS</h3>
+            <div class="status-row">
+              <div><div class="lbl">ATMOSPHERIC_RECYCLING</div><div class="val">ACTIVE_NOMINAL</div></div>
+              <span class="ic" style="color:var(--green)">✓</span>
+            </div>
+            <div class="status-row">
+              <div><div class="lbl">RADIATION_SHIELDING</div><div class="val">INTEGRITY_100%</div></div>
+              <span class="ic" style="color:var(--violet)">◇</span>
+            </div>
+            <div class="status-row">
+              <div><div class="lbl">EXTERNAL_SENSORS</div><div class="val">CALIBRATION_REQ</div></div>
+              <span class="ic" style="color:var(--orange)">△</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- STATUS BAR -->
+  <footer class="statusbar">
+    <div class="grp">
+      <span>UPLINK: 99.8%</span>
+      <span>DOWNLINK: 99.2%</span>
+      <span>LATENCY: 2.14ms</span>
+    </div>
+    <div class="grp">
+      <span>CORE: STABLE</span>
+      <span>SYSTEM: NOMINAL</span>
+      <span style="color:var(--cyan)">● ASTRA_OS</span>
+    </div>
+  </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

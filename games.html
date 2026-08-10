@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>ASTRA — Recreation & Games</title>
+<meta name="description" content="Astronaut recreation module - high-performance cognitive games and entertainment."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+<style>
+  .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; padding: 24px 0; }
+  .game-preview {
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: 0.3s;
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+  }
+  .game-preview:hover { transform: translateY(-5px); border-color: var(--cyan); box-shadow: 0 10px 30px rgba(34, 211, 238, 0.1); }
+  .game-preview .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(0deg, rgba(11,15,26,0.9) 0%, transparent 100%);
+    z-index: 1;
+  }
+  .game-preview .content { position: relative; z-index: 2; }
+  .game-preview .tag { font-size: 10px; font-weight: 700; color: var(--cyan); letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; }
+  .game-preview h3 { font-size: 20px; font-weight: 800; color: var(--text); margin: 0; }
+  .game-preview p { font-size: 12px; color: var(--dim); margin: 8px 0 16px; line-height: 1.5; }
+  .placeholder-img {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    opacity: 0.3;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="navbar">
+    <div class="brand">
+      <div class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4"/></svg></div>
+      <span class="brand-name">ASTRA</span>
+      <div class="mission">
+        <div class="row">MISSION: ISS-07</div>
+        <div class="row">STATUS: ACTIVE <span class="dot"></span></div>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <a data-nav href="index.html">DASHBOARD</a>
+      <a data-nav href="wellness.html">WELLNESS</a>
+      <a data-nav class="active" href="games.html">GAMES</a>
+      <a data-nav href="profile.html">PROFILE</a>
+      <a data-nav href="memories.html">MEMORIES</a>
+    </div>
+    <div class="nav-right">
+      <div class="timestamp"><div class="lbl">LIVE_TIME_STAMP</div><div class="val" data-clock>00:00:00 UTC</div></div>
+      <div class="avatar"></div>
+    </div>
+  </nav>
+
+  <div class="main">
+    <aside class="sidebar">
+      <div class="sidebar-head"><div class="t">ASTRA_OS</div><div class="s">V4.2.0_STABLE</div></div>
+      <a class="side-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg><span class="lbl-text">DASHBOARD</span></a>
+      <a class="side-link" href="wellness.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span class="lbl-text">WELLNESS</span></a>
+      <a class="side-link active" href="games.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 12L3 21l1.5-1.5L6 21l1.5-1.5L9 21l-3-9zM18 12l3 9-1.5-1.5L18 21l-1.5-1.5L15 21l3-9zM12 3l-4 8h8l-4-8z"/></svg><span class="lbl-text">GAMES</span></a>
+      <a class="side-link" href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="lbl-text">PROFILE</span></a>
+      <a class="side-link" href="memories.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span class="lbl-text">MEMORIES</span>
+      </a>
+    </aside>
+
+    <section class="content">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <div class="text-xs text-muted tracking uppercase">ENTERTAINMENT_MODULE_04</div>
+          <div class="headline">COGNITIVE <span class="accent">RECREATION</span></div>
+          <div class="text-sm text-dim mt-2">Maintain neuro-plasticity and morale with off-duty activities.</div>
+        </div>
+        <div class="flex gap-3">
+          <span class="badge green">XP: 2,450</span>
+          <span class="badge violet">RANK: COMMANDER</span>
+        </div>
+      </div>
+
+      <div class="game-grid">
+        <!-- Chess -->
+        <div class="game-preview">
+          <div class="placeholder-img">♟️</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">STRATEGY</div>
+            <h3>ASTRA_CHESS_SIM</h3>
+            <p>Quantum-processed chess logic for cognitive maintenance.</p>
+            <button class="btn" onclick="playGame('space games/Chess-Game/index.html')">LAUNCH_SIM</button>
+          </div>
+        </div>
+
+        <!-- Crossy Road -->
+        <div class="game-preview">
+          <div class="placeholder-img">🐣</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">ARCADE</div>
+            <h3>ORBITAL_CROSSING</h3>
+            <p>Navigate asteroid fields and high-speed debris streams.</p>
+            <button class="btn ghost" onclick="playGame('space games/Crossy-Road-Game/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- Doodle Jump -->
+        <div class="game-preview">
+          <div class="placeholder-img">🚀</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">ARCADE</div>
+            <h3>LUNAR_BOUNCE</h3>
+            <p>Vertical propulsion test in low-gravity lunar environments.</p>
+            <button class="btn ghost" onclick="playGame('space games/Doodle-Jump-Game/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- Pac-Man -->
+        <div class="game-preview">
+          <div class="placeholder-img">🟡</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">ARCADE</div>
+            <h3>NEBULA_CONSUMER</h3>
+            <p>Energy pellet collection protocol within containment zones.</p>
+            <button class="btn ghost" onclick="playGame('space games/Pac-Man-Game/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- Tower Blocks -->
+        <div class="game-preview">
+          <div class="placeholder-img">🏗️</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">CONSTRUCTION</div>
+            <h3>STATION_CONSTRUCTOR</h3>
+            <p>Precision modular alignment for orbital station expansion.</p>
+            <button class="btn ghost" onclick="playGame('space games/Tower-Blocks/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- Car Driving -->
+        <div class="game-preview">
+          <div class="placeholder-img">🏎️</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">DRIVING</div>
+            <h3>ROVER_EXPLORER</h3>
+            <p>High-speed surface traversal on distant planetary bodies.</p>
+            <button class="btn ghost" onclick="playGame('space games/car_dtiving/index.html')">LAUNCH_SIM</button>
+          </div>
+        </div>
+
+        <!-- Red vs Blue -->
+        <div class="game-preview">
+          <div class="placeholder-img">🟦</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">ARCADE</div>
+            <h3>RED_VS_BLUE</h3>
+            <p>High-stakes box combat in a zero-gravity combat arena.</p>
+            <button class="btn ghost" onclick="playGame('space games/blue_box/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- Table Tennis -->
+        <div class="game-preview">
+          <div class="placeholder-img">🏓</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">SPORTS</div>
+            <h3>LINE_TENNIS_SIM</h3>
+            <p>Precision reflex training via high-speed orbital tennis.</p>
+            <button class="btn ghost" onclick="playGame('space games/table_tanis/index.html')">LAUNCH_SIM</button>
+          </div>
+        </div>
+
+        <!-- Rabbit Run -->
+        <div class="game-preview">
+          <div class="placeholder-img">🐇</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">ARCADE</div>
+            <h3>LUNAR_RABBIT_RUN</h3>
+            <p>High-speed evasion and resource collection simulator.</p>
+            <button class="btn ghost" onclick="playGame('space games/rabbit_run/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+
+        <!-- The Cube -->
+        <div class="game-preview">
+          <div class="placeholder-img">🧊</div>
+          <div class="overlay"></div>
+          <div class="content">
+            <div class="tag">PUZZLE</div>
+            <h3>THE_CUBE</h3>
+            <p>High-fidelity 3D mechanical puzzle for spatial logic and cognitive speed.</p>
+            <button class="btn ghost" onclick="playGame('space games/cube/index.html')">PLAY_NOW</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <h3 class="mb-3">GLOBAL LEADERBOARD — ISS-07 CREW</h3>
+        <div class="status-row"><div><div class="lbl">01. CMDR. ARYA NOVAK</div><div class="val">14,200 PTS</div></div><span class="badge green">▲ 1</span></div>
+        <div class="status-row"><div><div class="lbl">02. DR. ELIAS VANCE</div><div class="val">12,850 PTS</div></div><span class="badge">--</span></div>
+        <div class="status-row"><div><div class="lbl">03. LT. SARAH CHEN</div><div class="val">11,400 PTS</div></div><span class="badge orange">▼ 1</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Game Modal -->
+  <div id="game-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">GAME_SIMULATION</h3>
+        <button class="icon-btn" onclick="closeGame()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="modal-body">
+        <iframe id="game-frame" src="" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="statusbar">
+    <div class="grp"><span>GAMES_SERVICE: ONLINE</span><span>LOCAL_STORAGE: 84%</span></div>
+    <div class="grp"><span>DAILY_CHALLENGE_ACTIVE</span><span style="color:var(--cyan)">● ASTRA_OS</span></div>
+  </footer>
+</div>
+
+<style>
+  .modal {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(11, 15, 26, 0.95);
+    backdrop-filter: blur(15px);
+    display: none; align-items: center; justify-content: center;
+    z-index: 1000; padding: 40px;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    width: 100%; max-width: 1200px; height: 100%;
+    background: var(--bg); border: 1px solid var(--border-strong);
+    border-radius: 20px; display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 0 50px rgba(34, 211, 238, 0.2);
+  }
+  .modal-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-body { flex: 1; position: relative; background: #000; }
+  #game-frame { width: 100%; height: 100%; }
+</style>
+
+<script>
+  function playGame(url) {
+    const modal = document.getElementById('game-modal');
+    const frame = document.getElementById('game-frame');
+    frame.src = url;
+    modal.classList.add('active');
+  }
+  function closeGame() {
+    const modal = document.getElementById('game-modal');
+    const frame = document.getElementById('game-frame');
+    frame.src = '';
+    modal.classList.remove('active');
+  }
+</script>
+
+<script src="js/app.js"></script>
+</body>
+</html>
